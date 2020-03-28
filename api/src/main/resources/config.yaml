@@ -1,0 +1,15 @@
+kumuluzee:
+  name: mag2020-media-chunks-metadata
+  env:
+    name: dev
+  version: 1.0.0
+  server:
+    base-url: http://localhost:8004
+    http:
+      port: 8004
+  datasources:
+    - jndi-name: jdbc/ChunksDB
+      connection-url: jdbc:mysql://mag2020.cd0nfxw2grsa.eu-central-1.rds.amazonaws.com:3306/Chunks
+      username: admin_uros
+      password: admin_uros123
+      max-pool-size: 20
