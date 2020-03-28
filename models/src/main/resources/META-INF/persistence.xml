@@ -5,6 +5,7 @@
         <non-jta-data-source>jdbc/ChunksDB</non-jta-data-source>
 
         <class>si.fri.mag.entities.ChunkEntity</class>
+        <class>si.fri.mag.entities.LinkMediaChunks</class>
 
         <properties>
             <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
