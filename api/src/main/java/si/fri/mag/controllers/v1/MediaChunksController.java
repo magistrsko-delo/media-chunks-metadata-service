@@ -34,4 +34,11 @@ public class MediaChunksController extends MainController {
         return this.responseOk("", linkMediaChunkDTOS);
     }
 
+    @GET
+    @Path("resolution")
+    public Response getAvailableResolutions() {
+        List<String> resolutions = mediaChunkService.getAvailableResolutions();
+        return this.responseOk("", resolutions);
+    }
+
 }

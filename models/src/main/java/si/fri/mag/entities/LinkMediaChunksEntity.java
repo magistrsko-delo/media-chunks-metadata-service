@@ -31,6 +31,11 @@ import javax.persistence.*;
                 query = "SELECT * FROM chunk inner join link_media_chunks on chunk.chunk_id = link_media_chunks.fk_chunk_id where link_media_chunks.fk_media_id = ?1 and link_media_chunks.resolution = ?2 order by link_media_chunks.position asc",
                 resultClass = LinkMediaChunksEntity.class
         ),
+
+        @NamedNativeQuery(
+                name = "getAvailableResolution",
+                query = "SELECT distinct linkchunk.resolution FROM link_media_chunks linkchunk"
+        ),
 })
 
 public class LinkMediaChunksEntity implements MainEntity {
