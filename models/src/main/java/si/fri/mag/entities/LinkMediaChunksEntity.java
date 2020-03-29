@@ -13,6 +13,24 @@ import javax.persistence.*;
                 query = "SELECT * FROM chunk inner join link_media_chunks on chunk.chunk_id = link_media_chunks.fk_chunk_id",
                 resultClass = LinkMediaChunksEntity.class
         ),
+
+        @NamedNativeQuery(
+                name = "getChunkInformation",
+                query = "SELECT * FROM chunk inner join link_media_chunks on chunk.chunk_id = link_media_chunks.fk_chunk_id where chunk.chunk_id = ?1",
+                resultClass = LinkMediaChunksEntity.class
+        ),
+
+        @NamedNativeQuery(
+                name = "getAllMediaChunks",
+                query = "SELECT * FROM chunk inner join link_media_chunks on chunk.chunk_id = link_media_chunks.fk_chunk_id where link_media_chunks.fk_media_id = ?1",
+                resultClass = LinkMediaChunksEntity.class
+        ),
+
+        @NamedNativeQuery(
+                name = "getAllMediaChunksResolution",
+                query = "SELECT * FROM chunk inner join link_media_chunks on chunk.chunk_id = link_media_chunks.fk_chunk_id where link_media_chunks.fk_media_id = ?1 and link_media_chunks.resolution = ?2",
+                resultClass = LinkMediaChunksEntity.class
+        ),
 })
 
 public class LinkMediaChunksEntity implements MainEntity {
