@@ -4,6 +4,7 @@ public class LinkMediaChunkDTO {
     private Integer id;
     private Integer mediaId;
     private String resolution;
+    private Integer position;
     private ChunkDTO chunk;
 
     public Integer getId() {
@@ -16,6 +17,10 @@ public class LinkMediaChunkDTO {
 
     public String getResolution() {
         return resolution;
+    }
+
+    public Integer getPosition() {
+        return position;
     }
 
     public ChunkDTO getChunk() {
@@ -39,4 +44,7 @@ public class LinkMediaChunkDTO {
         this.chunk = chunk;
     }
 
+    public void setPosition(Integer position) {
+        this.position = position;
+    }
 }

@@ -6,6 +6,7 @@ public class NewChunkInput extends ChunkAbstract {
 
     private Integer mediaId;
     private String resolution;
+    private Integer position;
 
     public Integer getMediaId() {
         return mediaId;
@@ -15,6 +16,9 @@ public class NewChunkInput extends ChunkAbstract {
         return resolution;
     }
 
+    public Integer getPosition() {
+        return position;
+    }
 
     // setters
     public void setMediaId(Integer mediaId) {
@@ -23,5 +27,9 @@ public class NewChunkInput extends ChunkAbstract {
 
     public void setResolution(String resolution) {
         this.resolution = resolution;
+    }
+
+    public void setPosition(Integer position) {
+        this.position = position;
     }
 }

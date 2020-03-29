@@ -18,6 +18,7 @@ public class LinkMediaChunkConverter {
         linkMediaChunkDTO.setId(linkMediaChunksEntity.getId());
         linkMediaChunkDTO.setMediaId(linkMediaChunksEntity.getMediaId());
         linkMediaChunkDTO.setResolution(linkMediaChunksEntity.getResolution());
+        linkMediaChunkDTO.setPosition(linkMediaChunksEntity.getPosition());
         linkMediaChunkDTO.setChunk(chunkConverter.toDTO(linkMediaChunksEntity.getChunkEntity()));
 
         return linkMediaChunkDTO;

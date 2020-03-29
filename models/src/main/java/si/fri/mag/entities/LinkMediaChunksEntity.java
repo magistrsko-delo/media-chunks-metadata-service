@@ -22,13 +22,13 @@ import javax.persistence.*;
 
         @NamedNativeQuery(
                 name = "getAllMediaChunks",
-                query = "SELECT * FROM chunk inner join link_media_chunks on chunk.chunk_id = link_media_chunks.fk_chunk_id where link_media_chunks.fk_media_id = ?1",
+                query = "SELECT * FROM chunk inner join link_media_chunks on chunk.chunk_id = link_media_chunks.fk_chunk_id where link_media_chunks.fk_media_id = ?1 order by link_media_chunks.resolution, link_media_chunks.position asc",
                 resultClass = LinkMediaChunksEntity.class
         ),
 
         @NamedNativeQuery(
                 name = "getAllMediaChunksResolution",
-                query = "SELECT * FROM chunk inner join link_media_chunks on chunk.chunk_id = link_media_chunks.fk_chunk_id where link_media_chunks.fk_media_id = ?1 and link_media_chunks.resolution = ?2",
+                query = "SELECT * FROM chunk inner join link_media_chunks on chunk.chunk_id = link_media_chunks.fk_chunk_id where link_media_chunks.fk_media_id = ?1 and link_media_chunks.resolution = ?2 order by link_media_chunks.position asc",
                 resultClass = LinkMediaChunksEntity.class
         ),
 })
@@ -39,14 +39,17 @@ public class LinkMediaChunksEntity implements MainEntity {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "fk_chunk_id")
+    @JoinColumn(name = "fk_chunk_id", nullable = false)
     private ChunkEntity chunkEntity;
 
-    @Column(name = "fk_media_id")
+    @Column(name = "fk_media_id", nullable = false)
     private Integer mediaId;
 
-    @Column(name = "resolution")
+    @Column(name = "resolution", nullable = false)
     private String resolution;
+
+    @Column(name = "position", nullable = false)
+    private Integer position;
 
     // getters
 
@@ -66,6 +69,10 @@ public class LinkMediaChunksEntity implements MainEntity {
         return resolution;
     }
 
+    public Integer getPosition() {
+        return position;
+    }
+
     // setters
     public void setMediaId(Integer mediaId) {
         this.mediaId = mediaId;
@@ -77,5 +84,9 @@ public class LinkMediaChunksEntity implements MainEntity {
 
     public void setResolution(String resolution) {
         this.resolution = resolution;
+    }
+
+    public void setPosition(Integer position) {
+        this.position = position;
     }
 }
