@@ -1,6 +1,6 @@
 package si.fri.mag.entities;
 
-import si.fri.mag.MainEntity;
+import si.fri.mag.interfaces.MainEntity;
 
 import javax.persistence.*;
 

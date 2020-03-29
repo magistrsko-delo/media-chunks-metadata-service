@@ -1,26 +1,13 @@
 package si.fri.mag.DTO.responses;
 
-public class LinkMediaChunkDTO {
+import si.fri.mag.DTO.abstracts.LinkMediaChunkAbstract;
+
+public class LinkMediaChunkDTO extends LinkMediaChunkAbstract  {
     private Integer id;
-    private Integer mediaId;
-    private String resolution;
-    private Integer position;
     private ChunkDTO chunk;
 
     public Integer getId() {
         return id;
-    }
-
-    public Integer getMediaId() {
-        return mediaId;
-    }
-
-    public String getResolution() {
-        return resolution;
-    }
-
-    public Integer getPosition() {
-        return position;
     }
 
     public ChunkDTO getChunk() {
@@ -32,19 +19,7 @@ public class LinkMediaChunkDTO {
         this.id = id;
     }
 
-    public void setMediaId(Integer mediaId) {
-        this.mediaId = mediaId;
-    }
-
-    public void setResolution(String resolution) {
-        this.resolution = resolution;
-    }
-
     public void setChunk(ChunkDTO chunk) {
         this.chunk = chunk;
-    }
-
-    public void setPosition(Integer position) {
-        this.position = position;
     }
 }

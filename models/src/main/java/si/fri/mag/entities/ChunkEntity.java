@@ -1,6 +1,6 @@
 package si.fri.mag.entities;
 
-import si.fri.mag.MainEntity;
+import si.fri.mag.interfaces.MainEntity;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -34,9 +34,6 @@ public class ChunkEntity implements MainEntity {
     @Column(name = "created_at", nullable = false, updatable = false, columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Date createdAt;
 
-    @Column(name = "updated_at", nullable = false, columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private Date updatedAt;
-
     // getters
     public Integer getChunkId() {
         return chunkId;
@@ -54,10 +51,6 @@ public class ChunkEntity implements MainEntity {
         return awsStorageName;
     }
 
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
-
     public Date getCreatedAt() {
         return createdAt;
     }
@@ -66,10 +59,6 @@ public class ChunkEntity implements MainEntity {
 
     public void setAwsBucketName(String awsBucketName) {
         AwsBucketName = awsBucketName;
-    }
-
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
     }
 
     public void setCreatedAt(Date createdAt) {

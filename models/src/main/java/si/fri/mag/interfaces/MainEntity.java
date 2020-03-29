@@ -1,4 +1,4 @@
-package si.fri.mag;
+package si.fri.mag.interfaces;
 
 public interface MainEntity {
 }

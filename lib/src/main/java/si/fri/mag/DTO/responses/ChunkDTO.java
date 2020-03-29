@@ -1,15 +1,14 @@
 package si.fri.mag.DTO.responses;
 
-import si.fri.mag.DTO.ChunkAbstract;
+import si.fri.mag.DTO.abstracts.ChunkAbstract;
 
 import java.util.Date;
 
 public class ChunkDTO extends ChunkAbstract {
     private Integer chunkId;
     private Date createdAt;
-    private Date updatedAt;
 
-    // getter
+    // getters
     public Integer getChunkId() {
         return chunkId;
     }
@@ -18,9 +17,6 @@ public class ChunkDTO extends ChunkAbstract {
         return createdAt;
     }
 
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
 
     // setters
 
@@ -30,9 +26,5 @@ public class ChunkDTO extends ChunkAbstract {
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
-    }
-
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
     }
 }

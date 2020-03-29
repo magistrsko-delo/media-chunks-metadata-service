@@ -1,4 +1,4 @@
-package si.fri.mag.DTO;
+package si.fri.mag.DTO.abstracts;
 
 public abstract class ChunkAbstract {
     protected String awsBucketName;
