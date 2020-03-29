@@ -1,5 +1,6 @@
 package si.fri.mag;
 
+import si.fri.mag.controllers.RootController;
 import si.fri.mag.controllers.v1.MediaChunksMetadataController;
 import si.fri.mag.mappers.EntityNotFoundMapper;
 import si.fri.mag.mappers.ForbiddenExceptionMapper;
@@ -19,6 +20,7 @@ public class MediaChunksMetadataApi extends Application {
         resources.add(ForbiddenExceptionMapper.class);
         resources.add(NotFoundExceptionMapper.class);
         resources.add(MediaChunksMetadataController.class);
+        resources.add(RootController.class);
         return resources;
     }
 }

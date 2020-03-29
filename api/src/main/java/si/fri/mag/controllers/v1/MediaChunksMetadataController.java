@@ -1,5 +1,6 @@
 package si.fri.mag.controllers.v1;
 
+import si.fri.mag.DTO.responses.LinkMediaChunkDTO;
 import si.fri.mag.controllers.MainController;
 import si.fri.mag.services.MediaChunksMetadataService;
 
@@ -11,6 +12,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.List;
 
 @ApplicationScoped
 @Path("/v1/chunks/metadata")
@@ -24,10 +26,8 @@ public class MediaChunksMetadataController extends MainController {
     @GET
     @Path("all")
     public Response getAllMediaMetadata() {
-
-        mediaChunksMetadataService.getAllMediaChunks();
-
-        return this.responseOk("", "ok");
+        List<LinkMediaChunkDTO> linkMediaChunkDTOS = mediaChunksMetadataService.getAllMediaChunks();
+        return this.responseOk("", linkMediaChunkDTOS);
     }
 
 }

@@ -1,4 +1,4 @@
-package si.fri.mag.DTO.responses;
+package si.fri.mag.DTO.responses.generic;
 
 public abstract class ResponseAbstract {
     protected Integer status;

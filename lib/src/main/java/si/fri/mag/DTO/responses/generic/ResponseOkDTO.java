@@ -1,4 +1,4 @@
-package si.fri.mag.DTO.responses;
+package si.fri.mag.DTO.responses.generic;
 
 public class ResponseOkDTO extends ResponseAbstract {
     private Object data;

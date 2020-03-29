@@ -6,7 +6,16 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "link_media_chunks")
-public class LinkMediaChunks implements MainEntity {
+
+@NamedNativeQueries({
+        @NamedNativeQuery(
+                name = "getAllChunkInformation",
+                query = "SELECT * FROM chunk inner join link_media_chunks on chunk.chunk_id = link_media_chunks.fk_chunk_id",
+                resultClass = LinkMediaChunksEntity.class
+        ),
+})
+
+public class LinkMediaChunksEntity implements MainEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

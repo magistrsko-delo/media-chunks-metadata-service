@@ -1,7 +1,7 @@
 package si.fri.mag.controllers;
 
-import si.fri.mag.DTO.responses.ResponseErrorDTO;
-import si.fri.mag.DTO.responses.ResponseOkDTO;
+import si.fri.mag.DTO.responses.generic.ResponseErrorDTO;
+import si.fri.mag.DTO.responses.generic.ResponseOkDTO;
 
 import javax.ws.rs.core.Response;
 
