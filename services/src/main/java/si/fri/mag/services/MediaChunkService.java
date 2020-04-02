@@ -5,12 +5,12 @@ import si.fri.mag.entities.LinkMediaChunksEntity;
 import si.fri.mag.utils.ConverterUtil;
 import si.fri.mag.utils.EntityUtils;
 
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.Query;
 import java.util.List;
 
-@RequestScoped
+@ApplicationScoped
 public class MediaChunkService {
     @Inject
     private EntityUtils entityUtils;

@@ -10,7 +10,7 @@ import si.fri.mag.entities.LinkMediaChunksEntity;
 import si.fri.mag.utils.ConverterUtil;
 import si.fri.mag.utils.EntityUtils;
 
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
@@ -18,7 +18,7 @@ import javax.persistence.Query;
 import javax.ws.rs.InternalServerErrorException;
 import java.util.List;
 
-@RequestScoped
+@ApplicationScoped
 public class ChunksMetadataService {
 
     @Inject
