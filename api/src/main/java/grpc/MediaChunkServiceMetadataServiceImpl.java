@@ -4,6 +4,7 @@ import com.google.protobuf.Empty;
 import com.kumuluz.ee.grpc.annotations.GrpcService;
 import io.grpc.stub.StreamObserver;
 import si.fri.mag.DTO.input.NewChunkInput;
+import si.fri.mag.DTO.input.NewLinkInput;
 import si.fri.mag.DTO.responses.LinkMediaChunkDTO;
 import si.fri.mag.services.ChunksMetadataService;
 import si.fri.mag.services.MediaChunkService;
@@ -62,6 +63,27 @@ public class MediaChunkServiceMetadataServiceImpl extends MediaMetadataGrpc.Medi
         MediachunksmetadataService.ResolutionResponse response = MediachunksmetadataService.ResolutionResponse.newBuilder()
                 .addAllResolutions(resolutions)
                 .build();
+        responseObserver.onNext(response);
+        responseObserver.onCompleted();
+    }
+
+    @Override
+    public void linkMediaWithChunk(MediachunksmetadataService.LinkMediaWithChunkRequest request, StreamObserver<MediachunksmetadataService.LinkMediaChunkResponse> responseObserver) {
+        chunksMetadataService = CDI.current().select(ChunksMetadataService.class).get();
+
+        NewLinkInput linkInput = new NewLinkInput();
+        linkInput.setMediaId(request.getMediaId());
+        linkInput.setPosition(request.getPosition());
+        linkInput.setResolution(request.getResolution());
+        linkInput.setChunkId(request.getChunkId());
+        boolean isMediaLinkedWithChunk = chunksMetadataService.linkMediaAndChunk(linkInput);
+
+        MediachunksmetadataService.LinkMediaChunkResponse response = MediachunksmetadataService.LinkMediaChunkResponse.newBuilder()
+                .setData(isMediaLinkedWithChunk)
+                .setStatus(isMediaLinkedWithChunk ? 200 : 500)
+                .setMessage(isMediaLinkedWithChunk ? "Media has been linked with chunk" : "error when linking media")
+                .build();
+
         responseObserver.onNext(response);
         responseObserver.onCompleted();
     }

@@ -4,6 +4,7 @@ import "google/protobuf/empty.proto";
 
 service MediaMetadata {
   rpc newMediaChunk(NewMediaChunkRequest) returns (MediaChunkInfoResponseRepeated) {};
+  rpc linkMediaWithChunk(LinkMediaWithChunkRequest) returns (LinkMediaChunkResponse) {};
   rpc getMediaChunksResolution(MediaChunkResolutionRequest) returns (MediaChunkInfoResponseRepeated) {};
   rpc getAvailableResolutions(google.protobuf.Empty) returns (ResolutionResponse) {};
 }
@@ -22,6 +23,12 @@ message MediaChunkInfoResponse {
 
 message ResolutionResponse {
   repeated string resolutions = 1;
+}
+
+message LinkMediaChunkResponse {
+  int32 status = 1;
+  string message = 2;
+  bool data = 3;
 }
 
 message ChunkInfo {
@@ -44,4 +51,11 @@ message NewMediaChunkRequest {
 message MediaChunkResolutionRequest {
   string resolution = 1;
   int32  mediaId = 2;
+}
+
+message LinkMediaWithChunkRequest {
+  int32 mediaId = 1;
+  int32 position = 2;
+  string resolution = 3;
+  int32 chunkId = 4;
 }
