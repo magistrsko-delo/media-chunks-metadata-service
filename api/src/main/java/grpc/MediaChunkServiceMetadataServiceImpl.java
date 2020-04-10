@@ -5,6 +5,7 @@ import com.kumuluz.ee.grpc.annotations.GrpcService;
 import io.grpc.stub.StreamObserver;
 import si.fri.mag.DTO.input.NewChunkInput;
 import si.fri.mag.DTO.input.NewLinkInput;
+import si.fri.mag.DTO.responses.ChunkDTO;
 import si.fri.mag.DTO.responses.LinkMediaChunkDTO;
 import si.fri.mag.services.ChunksMetadataService;
 import si.fri.mag.services.MediaChunkService;
@@ -82,6 +83,28 @@ public class MediaChunkServiceMetadataServiceImpl extends MediaMetadataGrpc.Medi
                 .setData(isMediaLinkedWithChunk)
                 .setStatus(isMediaLinkedWithChunk ? 200 : 500)
                 .setMessage(isMediaLinkedWithChunk ? "Media has been linked with chunk" : "error when linking media")
+                .build();
+
+        responseObserver.onNext(response);
+        responseObserver.onCompleted();
+    }
+
+    @Override
+    public void getMediaChunkInfo(MediachunksmetadataService.GetMediaChunkInfoRequest request, StreamObserver<MediachunksmetadataService.ChunkInfo> responseObserver) {
+        chunksMetadataService = CDI.current().select(ChunksMetadataService.class).get();
+
+        List<LinkMediaChunkDTO> chunkInfo = chunksMetadataService.getChunk(request.getChunkId());
+        if (chunkInfo.size() == 0) {
+            responseObserver.onError(new Throwable("no chunk for chunks id: " + request.getChunkId() + " found"));
+            return;
+        }
+
+        MediachunksmetadataService.ChunkInfo response = MediachunksmetadataService.ChunkInfo.newBuilder()
+                .setChunkId(chunkInfo.get(0).getChunk().getChunkId())
+                .setLength(chunkInfo.get(0).getChunk().getLength())
+                .setCreatedAt(chunkInfo.get(0).getChunk().getCreatedAt().getTime())
+                .setAwsStorageName(chunkInfo.get(0).getChunk().getAwsStorageName())
+                .setAwsBucketName(chunkInfo.get(0).getChunk().getAwsBucketName())
                 .build();
 
         responseObserver.onNext(response);
