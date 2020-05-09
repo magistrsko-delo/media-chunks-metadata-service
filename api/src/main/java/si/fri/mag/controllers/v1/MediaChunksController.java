@@ -41,4 +41,16 @@ public class MediaChunksController extends MainController {
         return this.responseOk("", resolutions);
     }
 
+    @DELETE
+    @Path("{mediaId}")
+    public Response deleteLinkedMediaChunks(@PathParam("mediaId") Integer mediadId) {
+
+        boolean isDeleted = mediaChunkService.deleteLinkedMediaChunks(mediadId);
+        if (!isDeleted) {
+            return this.responseError(500, "linked media not deleted");
+        }
+
+        return this.responseOk("linked media deleted", isDeleted);
+    }
+
 }
