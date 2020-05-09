@@ -8,6 +8,8 @@ service MediaMetadata {
   rpc getMediaChunksResolution(MediaChunkResolutionRequest) returns (MediaChunkInfoResponseRepeated) {};
   rpc getAvailableResolutions(google.protobuf.Empty) returns (ResolutionResponse) {};
   rpc getMediaChunkInfo(GetMediaChunkInfoRequest) returns (ChunkInfo) {};
+
+  rpc deleteLinkedMediaChunks(MediaIdRequest) returns (StatusResponse){};
 }
 
 message MediaChunkInfoResponseRepeated {
@@ -63,4 +65,14 @@ message LinkMediaWithChunkRequest {
 
 message GetMediaChunkInfoRequest {
   int32 chunkId = 1;
+}
+
+message MediaIdRequest {
+  int32 mediaId = 1;
+}
+
+message StatusResponse {
+  int32 status = 1;
+  string message = 2;
+  bool data = 3;
 }

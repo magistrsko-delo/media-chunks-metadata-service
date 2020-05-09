@@ -36,6 +36,11 @@ import javax.persistence.*;
                 name = "getAvailableResolution",
                 query = "SELECT distinct linkchunk.resolution FROM link_media_chunks linkchunk"
         ),
+
+        @NamedNativeQuery(
+                name = "deleteLinkedMediaChunks",
+                query = "DELETE FROM link_media_chunks WHERE link_media_chunks.fk_media_id = ?1"
+        ),
 })
 
 public class LinkMediaChunksEntity implements MainEntity {

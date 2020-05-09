@@ -3,15 +3,20 @@ package si.fri.mag.services;
 import si.fri.mag.DTO.responses.LinkMediaChunkDTO;
 import si.fri.mag.entities.LinkMediaChunksEntity;
 import si.fri.mag.utils.ConverterUtil;
+import si.fri.mag.utils.EntityTransactions;
 import si.fri.mag.utils.EntityUtils;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.util.List;
 
 @ApplicationScoped
 public class MediaChunkService {
+    @Inject
+    private EntityTransactions entityTransactions;
+
     @Inject
     private EntityUtils entityUtils;
 
@@ -35,6 +40,21 @@ public class MediaChunkService {
     public List<String> getAvailableResolutions() {
         Query q = entityUtils.createQuery("getAvailableResolution");
         return (List<String>)q.getResultList();
+    }
+
+    public boolean deleteLinkedMediaChunks(Integer mediaId) {
+        Query queryLinkedMediaDelete = entityUtils.createQuery("deleteLinkedMediaChunks").setParameter(1, mediaId);
+
+        try {
+            entityTransactions.beginTx();
+            queryLinkedMediaDelete.executeUpdate();
+            entityTransactions.commitTx();
+        } catch (Exception e) {
+            entityTransactions.rollbackTx();
+            return false;
+        }
+
+        return true;
     }
 
 }

@@ -111,6 +111,24 @@ public class MediaChunkServiceMetadataServiceImpl extends MediaMetadataGrpc.Medi
         responseObserver.onCompleted();
     }
 
+    @Override
+    public void deleteLinkedMediaChunks(MediachunksmetadataService.MediaIdRequest request, StreamObserver<MediachunksmetadataService.StatusResponse> responseObserver) {
+        mediaChunkService = CDI.current().select(MediaChunkService.class).get();
+        boolean isDeleted = mediaChunkService.deleteLinkedMediaChunks(request.getMediaId());
+        if (!isDeleted) {
+            responseObserver.onError(new Throwable("Chunk not deleted: " + isDeleted));
+            responseObserver.onCompleted();
+        }
+
+        MediachunksmetadataService.StatusResponse rsp = MediachunksmetadataService.StatusResponse.newBuilder()
+                .setMessage("media chunks deleted")
+                .setStatus(200)
+                .setData(true)
+                .build();
+        responseObserver.onNext(rsp);
+        responseObserver.onCompleted();
+    }
+
     private List<MediachunksmetadataService.MediaChunkInfoResponse> buildMediaChunksInfoResponse(List<LinkMediaChunkDTO> linkMediaChunkDTOS) {
         List<MediachunksmetadataService.MediaChunkInfoResponse> mediaChunkInfoResponses = new ArrayList<MediachunksmetadataService.MediaChunkInfoResponse>();
         for (LinkMediaChunkDTO linkMediaChunkDTO : linkMediaChunkDTOS) {
