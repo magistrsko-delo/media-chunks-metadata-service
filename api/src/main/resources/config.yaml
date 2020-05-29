@@ -37,3 +37,8 @@ kumuluzee:
       url: localhost
       http:
         port: 9003
+mp:
+  opentracing:
+    server:
+      operation-name-provider: http-path
+      skip-pattern: /openapi.*|/health.*
