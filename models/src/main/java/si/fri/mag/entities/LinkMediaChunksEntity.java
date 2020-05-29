@@ -1,5 +1,6 @@
 package si.fri.mag.entities;
 
+import org.eclipse.microprofile.opentracing.Traced;
 import si.fri.mag.interfaces.MainEntity;
 
 import javax.persistence.*;
@@ -43,6 +44,7 @@ import javax.persistence.*;
         ),
 })
 
+@Traced(value = true, operationName = "linkMediaChunkTracing")
 public class LinkMediaChunksEntity implements MainEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

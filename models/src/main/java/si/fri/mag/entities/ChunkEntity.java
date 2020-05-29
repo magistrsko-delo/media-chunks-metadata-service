@@ -1,5 +1,6 @@
 package si.fri.mag.entities;
 
+import org.eclipse.microprofile.opentracing.Traced;
 import si.fri.mag.interfaces.MainEntity;
 
 import javax.persistence.*;
@@ -15,7 +16,7 @@ import java.sql.Date;
                 resultClass = ChunkEntity.class
         ),
 })
-
+@Traced(value = true, operationName = "chunkEntityTracing")
 public class ChunkEntity implements MainEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
